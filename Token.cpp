@@ -14,6 +14,3 @@ std::string Token::toString() {
     string tag_str = convert.str();
     return tag_str;
 }
-
-
-ssssss
