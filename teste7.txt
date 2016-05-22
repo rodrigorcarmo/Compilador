@@ -1,0 +1,16 @@
+var
+	i, j, k, target is int
+begin
+	read(target);
+	i:=j:=k:=1;
+	cont=2;
+	if (target>=3)
+		do
+			i:=j;
+			j:=k;
+			k:=i+j;
+			cont:=cont+1;
+		while(cont<target)
+	out(k);
+end
+			

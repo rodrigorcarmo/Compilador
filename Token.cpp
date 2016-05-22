@@ -4,6 +4,9 @@ Token::Token(int t) {
     tag = t;
 }
 
-std::string Token::toString() {
-    return std::to_string(tag);
+string Token::to_string() {
+    ostringstream convert;
+    convert << tag;
+    string tag_str = convert.str();
+    return tag_str;
 }

@@ -1,23 +1,45 @@
 #include <string>
 #include <iostream>
+#include <cstdlib>
+#include <cstring>
 #include <fstream>
+#include <unordered_map>
+#include "Word.h"
+#include "Token.h"
+#include "Num.h"
+#include "Tag.h"
+#include "Literal.h"
+
 #ifndef COMPILADOR_LEXICO_H
 #define COMPILADOR_LEXICO_H
+
 
 using namespace std;
 
 class Lexico {
 public:
-    char ch;
-    int line;
+    unordered_map<string,Word*> hashtable;
     Lexico(string filename);
-    void Analisa();
+    int next_char();
+    bool compareNext(char c);
+    void insertReserved(Word *w);
+    bool is_delimiter(char c);
+    Token* next_token();
+    void print();
 
 private:
-    void readCharacter();
-    bool compareNext(char c);
-    void insertReserved();
+    char ch;
+    int line;
+    int column;
     ifstream file;
+    const string delimiters = " \t\r\b\n";
+    void shift_to_after(string s);
+    Token* rec_punc_relop();
+    Token* rec_literal();
+    Token* rec_number();
+    Token* rec_id_reserv();
+    void display_error(int n, string s);
+    Token* insert_word(string s);
 };
 
 
