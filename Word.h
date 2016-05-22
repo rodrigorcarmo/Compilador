@@ -8,6 +8,7 @@ using namespace std;
 class Word : public Token {
 private:
     string lexeme;
+<<<<<<< Updated upstream
 
 public:
     Word(string s, int tag);
@@ -44,6 +45,44 @@ public:
     static Word* DivOp;
     static Word* AndOp;
     static Word* AssignOp;
+=======
+public:
+    Word(string s, int tag);
+    string to_string();
+    static const Word Var;
+    static const Word Begin;
+    static const Word End;
+    static const Word Is;
+    static const Word Int;
+    static const Word String;
+    static const Word If;
+    static const Word Then;
+    static const Word Else;
+    static const Word Do;
+    static const Word While;
+    static const Word In;
+    static const Word Out;
+    static const Word Not;
+    static const Word Semicolon;
+    static const Word Comma;
+    static const Word OpenParenthesis;
+    static const Word CloseParenthesis;
+    static const Word OpenBrace;
+    static const Word CloseBrace;
+    static const Word EqOp;
+    static const Word GreaterOp;
+    static const Word GeOp;
+    static const Word LessOp;
+    static const Word LeOp;
+    static const Word NeOp;
+    static const Word SumOp;
+    static const Word MinusOp;
+    static const Word OrOp;
+    static const Word MultOp;
+    static const Word DivOp;
+    static const Word AndOp;
+    static const Word AssignOp;
+>>>>>>> Stashed changes
 };
 
 #endif /* WORD_H */

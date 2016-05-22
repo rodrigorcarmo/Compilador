@@ -3,13 +3,17 @@
 #include "Token.h"
 #include "Num.h"
 #include "Word.h"
+<<<<<<< Updated upstream
 #include <cmath>
 #include <cstdio>
+=======
+>>>>>>> Stashed changes
 
 using namespace std;
 
 int main(int argc, char** argv) {
     string path;
+<<<<<<< Updated upstream
     if (argc > 1) {
         path = argv[1];
     }
@@ -51,5 +55,19 @@ int main(int argc, char** argv) {
     string pause;
     cout << "Press any key to continue...";
     cin>>pause;
+=======
+    cout<<"Digite o caminho do arquivo"<<endl;
+    cin>>path;
+    Lexico* lex = new Lexico(path);
+    char ch;
+    while(true) {
+        ch = lex->next_valid_char();
+        if (ch == EOF)
+            break;
+        cout << ch;
+    }
+    //Word::Begin;
+    //lex->Analisa();
+>>>>>>> Stashed changes
     return 0;
 }
