@@ -1,7 +1,6 @@
 #include "Word.h"
 
 // Inicialization of the constant static objects of the class
-<<<<<<< Updated upstream
 Word* Word::Var = new Word("var", VAR);
 Word* Word::Begin = new Word("begin", BEGIN);
 Word* Word::End = new Word("end", END);
@@ -33,41 +32,6 @@ Word* Word::MultOp = new Word("*", MULT_OP);
 Word* Word::DivOp = new Word("/", DIV_OP);
 Word* Word::AndOp = new Word("and", AND_OP);
 Word* Word::AssignOp = new Word(":=", ASSIGN_OP);
-=======
-const Word Word::Var("var", VAR);
-const Word Word::Begin("begin", BEGIN);
-const Word Word::End("end", END);
-const Word Word::Is("is", IS);
-const Word Word::Int("int", INT);
-const Word Word::String("string", STRING);
-const Word Word::If("if", IF);
-const Word Word::Then("then", THEN);
-const Word Word::Else("else", ELSE);
-const Word Word::Do("do", DO);
-const Word Word::While("while", WHILE);
-const Word Word::In("in", IN);
-const Word Word::Out("out", OUT);
-const Word Word::Not("not", NOT);
-const Word Word::Semicolon(";", SEMICOLON);
-const Word Word::Comma(",", COMMA);
-const Word Word::OpenParenthesis("(", OPEN_PARENTHESIS);
-const Word Word::CloseParenthesis(")", CLOSE_PARENTHESIS);
-const Word Word::OpenBrace("{", OPEN_BRACE);
-const Word Word::CloseBrace("}", CLOSE_BRACE);
-const Word Word::EqOp("=", EQ_OP);
-const Word Word::GreaterOp(">", GREATER_OP);
-const Word Word::GeOp(">=", GE_OP);
-const Word Word::LessOp("<", LESS_OP);
-const Word Word::LeOp("<=", LE_OP);
-const Word Word::NeOp("<>", NE_OP);
-const Word Word::SumOp("+", SUM_OP);
-const Word Word::MinusOp("-", MINUS_OP);
-const Word Word::OrOp("or", OR_OP);
-const Word Word::MultOp("*", MULT_OP);
-const Word Word::DivOp("/", DIV_OP);
-const Word Word::AndOp("and", AND_OP);
-const Word Word::AssignOp(":=", ASSIGN_OP);
->>>>>>> Stashed changes
 
 Word::Word(string s, int tag) : Token(tag) {
     lexeme = s;
@@ -75,11 +39,8 @@ Word::Word(string s, int tag) : Token(tag) {
 
 string Word::to_string() {
     return lexeme;
-<<<<<<< Updated upstream
 }
 
 int Word::get_Tag() {
     return tag;
-=======
->>>>>>> Stashed changes
 }

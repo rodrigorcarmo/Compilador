@@ -15,12 +15,8 @@ class Token {
 public:
     int tag;
     Token(int t);
-<<<<<<< Updated upstream
     //virtual ~Token();
      string to_string();
-=======
-    string toString();
->>>>>>> Stashed changes
 };
 
 

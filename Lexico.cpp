@@ -4,19 +4,11 @@
  Class constructor. Insert all reserved words into the symbols table.
  */
 Lexico::Lexico(string filename) {
-<<<<<<< Updated upstream
     this->line = 1;
     this->column = 0;
     this->file.open(filename.c_str());
     if(!this->file.is_open()){
         cout<<"File \"" << filename << "\"does not exist!" <<endl;
-=======
-    this->ch = ' ';
-    this->line = 1;
-    this->file.open(filename.c_str());
-    if(!this->file.is_open()){
-        cout<<"Arquivo não existe!"<<endl;
->>>>>>> Stashed changes
         return;
     }
     insertReserved(Word::Var);
@@ -39,24 +31,17 @@ Lexico::Lexico(string filename) {
     this->next_char();
 }
 
-<<<<<<< Updated upstream
 /*
  Compare next char of file to c
  */
 bool Lexico::compareNext(char c) {
     this->ch=this->next_char();
-=======
-
-bool Lexico::compareNext(char c) {
-    this->ch=file.get();
->>>>>>> Stashed changes
     if(ch!=c)
         return false;
     return true;
 }
 
 /*
-<<<<<<< Updated upstream
  Return next char of file or EOF if end of file
  */
 int Lexico::next_char() {
@@ -103,18 +88,6 @@ beginning:
     if((t = this->rec_punc_relop()) != NULL)
         if(t->to_string()!="-1")
             return t;
-=======
- Read a nonblanck character
- */
-char Lexico::next_valid_char() {
-    while(true){
-        if((this->ch=file.get()) == EOF)   //read next char
-            return EOF;
-        if(this->is_delimiter(this->ch))
-            continue;
-        else if(ch=='\n')
-            line++;
->>>>>>> Stashed changes
         else
             goto beginning;
     if(this->ch=='{'){
@@ -152,7 +125,6 @@ void Lexico::shift_to_after(string s) {
         if(s.compare(s_tmp) == 0)
             break;
     }
-<<<<<<< Updated upstream
 }
 
 /*
@@ -234,27 +206,6 @@ Token* Lexico::rec_punc_relop() {
             return NULL;
     }
 }
-=======
-    return this->ch;
-}
-
-/*
- Check if char c is a delimiter
- */
-bool Lexico::is_delimiter(char c) {
-    string str(1, c);
-    return delimiters.find(str) != std::string::npos;
-}
-
-/*
- Not yet implementes
- */
-void Lexico::Analisa() {
-    
-    this->next_valid_char();
-
-    switch(this->ch){
->>>>>>> Stashed changes
 
 /*
  Recognize literal
@@ -277,7 +228,6 @@ Token* Lexico::rec_literal() {
     return (Token*)(new Literal(s));
 }
 
-<<<<<<< Updated upstream
 /*
  Recognize number
  */
@@ -289,14 +239,6 @@ Token* Lexico::rec_number() {
     }while (isdigit(ch));
     return (Token*)(new Num(value));
 }
-=======
-    if(isdigit(ch)){
-        int valor = 0;
-        do{
-            //valor = 10*valor + atoi((char*)ch);
-            this->ch=file.get();
-        }while (isdigit(ch));
->>>>>>> Stashed changes
 
 /*
  Recognize identifier or reserved word

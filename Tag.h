@@ -29,11 +29,6 @@
 #define COMMA 19
 #define OPEN_PARENTHESIS 20
 #define CLOSE_PARENTHESIS 21
-<<<<<<< Updated upstream
-=======
-#define OPEN_BRACE 22
-#define CLOSE_BRACE 23
->>>>>>> Stashed changes
 
 // Relational Operations
 #define EQ_OP 24
