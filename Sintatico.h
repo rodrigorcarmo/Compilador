@@ -1,6 +1,7 @@
 #include "Lexico.h"
 #include "Tag.h"
 #include "Token.h";
+#include "Lexico";
 #ifndef COMPILADOR_SINTATICO_H
 #define COMPILADOR_SINTATICO_H
 
