@@ -1,7 +1,7 @@
 CC = g++ -std=c++11
 EXEC = pg_lexer
-OBJS = Lexico.o Token.o Num.o Word.o Literal.o
-H_FILE = Lexico.h Token.h Tag.h Num.h Word.h Literal.h
+OBJS = Sintatico.o Lexico.o Token.o Num.o Word.o Literal.o
+H_FILE = Sintatico.h Lexico.h Token.h Tag.h Num.h Word.h Literal.h
 MATHFLAG = -lm
 FLAGS = -O3 -fopenmp
 SEQFLAGS = -O3 
@@ -13,6 +13,9 @@ pg_lexer: main.cpp $(OBJS) $(H_FILE)
 pg_lexer_OMP: main.cpp $(OBJS) $(H_FILE)
 	$(CC) $(FLAGS) $(MATHFLAG) -o $@ main.cpp $(OBJS)
 
+
+Sintatico.o: Sintatico.cpp
+	$(CC) $(SEQFLAGS) -o $@ -c Sintatico.cpp
 
 Lexico.o: Lexico.cpp
 	$(CC) $(SEQFLAGS) -o $@ -c Lexico.cpp

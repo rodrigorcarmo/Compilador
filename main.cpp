@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Sintatico.h"
 #include "Lexico.h"
 #include "Token.h"
 #include "Num.h"
@@ -19,6 +20,9 @@ int main(int argc, char** argv) {
         cin>>path;
     }
     Lexico* lex = new Lexico(path);
+    Sintatico* sint = new Sintatico(lex);
+    sint->run();
+    /*
     Token* tok;
     Word* w;
     Num* num;
@@ -48,6 +52,10 @@ int main(int argc, char** argv) {
 
     }
     lex->print();
+    */
+    
+    
+    
     string pause;
     cout << "Press any key to continue...";
     cin>>pause;

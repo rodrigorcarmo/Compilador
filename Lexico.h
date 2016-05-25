@@ -26,6 +26,7 @@ public:
     bool is_delimiter(char c);
     Token* next_token();
     void print();
+    int get_line();
 
 private:
     char ch;

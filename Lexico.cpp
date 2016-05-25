@@ -301,4 +301,8 @@ Token* Lexico::insert_word(string s) {
     return (Token*)(got->second);
 }
 
+int Lexico::get_line() {
+    return this->line;
+}
+
 
