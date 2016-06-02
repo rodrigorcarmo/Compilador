@@ -10,19 +10,26 @@
 using namespace std;
 
 int main(int argc, char** argv) {
+    cout<<"SYNTAX ANALYZER 1.0 -> Marcelo e Rodrigo"<<endl;
     string path;
     if (argc > 1) {
         path = argv[1];
     }
     if (path.length() < 1) {
-        cout<<"LEXICAL ANALISER 1.0 -> Marcelo e Rodrigo"<<endl;
         cout<<"Please type the full path of the file to be compiled:"<<endl;
         cin>>path;
     }
     Lexico* lex = new Lexico(path);
+    
+#define b1 if(1==0){x
+#define b2 }y
+
+a1:
     Sintatico* sint = new Sintatico(lex);
     sint->run();
-    /*
+a2:
+    
+b1:
     Token* tok;
     Word* w;
     Num* num;
@@ -52,7 +59,7 @@ int main(int argc, char** argv) {
 
     }
     lex->print();
-    */
+b2:
     
     
     

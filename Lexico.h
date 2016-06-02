@@ -27,11 +27,16 @@ public:
     Token* next_token();
     void print();
     int get_line();
+    int get_column();
 
 private:
     char ch;
     int line;
+    int line_mem1;
+    int line_mem2;
     int column;
+    int column_mem1;
+    int column_mem2;
     ifstream file;
     const string delimiters = " \t\r\b\n";
     void shift_to_after(string s);

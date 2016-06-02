@@ -19,10 +19,16 @@ void Sintatico::eat(int t){
 		this->advance();
 	}
 	else{
-		this->error();
+		this->error(*this->non_terminal);
 	}
 }
 
+//#define switch  cout << __FUNCTION__ << " " << this->tok_code << endl;\
+this->non_terminal = new string(__FUNCTION__);switch
+
+
+#define switch  this->non_terminal = new string(__FUNCTION__);switch
+#define eat     non_terminal = new string(__FUNCTION__);this->eat
 
 
 void Sintatico::program() {
@@ -40,7 +46,7 @@ void Sintatico::program() {
             this->eat(END);
             break;
         default:
-            this->error();
+            this->error("program");
     }
 }
 
@@ -50,8 +56,9 @@ void Sintatico::decl_list1() {
             this->decl();
             this->eat(SEMICOLON);
             this->decl_list2();
+            break;
         default:
-            this->error();
+            this->error("decl_list1");
     }
 }
 
@@ -63,7 +70,7 @@ void Sintatico::decl_list2() {
             this->decl_list1();
             break;
         default:
-            this->error();
+            this->error("decl_list2");
     }
 }
 
@@ -75,7 +82,7 @@ void Sintatico::decl() {
             this->type();
             break;
         default:
-            this->error();
+            this->error("decl");
     }
 }
 
@@ -86,7 +93,7 @@ void Sintatico::ident_list1() {
             this->ident_list2();
             break;
         default:
-            this->error();
+            this->error("ident_list1");
     }
 }
 
@@ -99,20 +106,18 @@ void Sintatico::ident_list2() {
             this->ident_list1();
             break;
         default:
-            this->error();
+            this->error("ident_list2");
     }
 }
 
 void Sintatico::type() {
     switch(this->tok_code) {
         case INT:
-            this->eat(INT);
-            break;
         case STRING:
-            this->eat(STRING);
+            this->eat(this->tok_code);
             break;
         default:
-            this->error();
+            this->error("type");
     }
 }
 
@@ -128,7 +133,7 @@ void Sintatico::stmt_list1() {
             this->stmt_list2();
             break;
         default:
-            this->error();
+            this->error("stmt_list1");
     }
 }
 
@@ -146,7 +151,7 @@ void Sintatico::stmt_list2() {
             this->stmt_list1();
             break;
         default:
-            this->error();
+            this->error("stmt_list2");
     }
 }
 
@@ -168,7 +173,7 @@ void Sintatico::stmt() {
             this->write_stmt();
             break;
         default:
-            this->error();
+            this->error("stmt");
     }
 }
 
@@ -180,7 +185,7 @@ void Sintatico::assign_stmt() {
             this->simple_expr1();
             break;
         default:
-            this->error();
+            this->error("assign_stmt");
     }
 }
 
@@ -194,7 +199,7 @@ void Sintatico::if_stmt1() {
             this->if_stmt2();
             break;
         default:
-            this->error();
+            this->error("if_stmt1");
     }
 }
 
@@ -209,7 +214,7 @@ void Sintatico::if_stmt2() {
             this->eat(END);
             break;
         default:
-            this->error();
+            this->error("if_stmt2");
     }
 }
 
@@ -224,7 +229,7 @@ void Sintatico::condition() {
             this->expression1();
             break;
         default:
-            this->error();
+            this->error("condition");
     }
 }
 
@@ -236,7 +241,7 @@ void Sintatico::do_stmt() {
             this->stmt_suffix();
             break;
         default:
-            this->error();
+            this->error("do_stmt");
     }
 }
 
@@ -247,7 +252,7 @@ void Sintatico::stmt_suffix() {
             this->condition();
             break;
         default:
-            this->error();
+            this->error("stmt_suffix");
     }
 }
 
@@ -260,7 +265,7 @@ void Sintatico::read_stmt() {
             this->eat(CLOSE_PARENTHESIS);
             break;
         default:
-            this->error();
+            this->error("read_stmt");
     }
 }
 
@@ -273,7 +278,7 @@ void Sintatico::write_stmt() {
             this->eat(CLOSE_PARENTHESIS);
             break;
         default:
-            this->error();
+            this->error("write_stmt");
     }
 }
 
@@ -288,7 +293,7 @@ void Sintatico::writable() {
             this->simple_expr1();
             break;
         default:
-            this->error();
+            this->error("writable");
     }
 }
 
@@ -305,7 +310,7 @@ void Sintatico::expression1() {
             this->expression2();
             break;
         default:
-            this->error();
+            this->error("expression1");
     }
 }
 
@@ -325,7 +330,7 @@ void Sintatico::expression2() {
             this->simple_expr1();
             break;
         default:
-            this->error();
+            this->error("expression2");
     }
 }
 
@@ -341,7 +346,7 @@ void Sintatico::simple_expr1() {
             this->simple_expr2();
             break;
         default:
-            this->error();
+            this->error("simple_expr1");
     }
 }
 
@@ -364,7 +369,7 @@ void Sintatico::simple_expr2() {
             this->simple_expr1();
             break;
         default:
-            this->error();
+            this->error("simple_expr2");
     }
 }
 
@@ -380,7 +385,7 @@ void Sintatico::term1() {
             this->term2();
             break;
         default:
-            this->error();
+            this->error("term1");
     }
 }
 
@@ -406,7 +411,7 @@ void Sintatico::term2() {
             this->term1();
             break;
         default:
-            this->error();
+            this->error("term2");
     }
 }
 
@@ -424,7 +429,7 @@ void Sintatico::factor_a() {
             this->factor();
             break;
         default:
-            this->error();
+            this->error("factor_a");
     }
 }
 
@@ -443,7 +448,7 @@ void Sintatico::factor() {
             this->constant();
             break;
         default:
-            this->error();
+            this->error("factor");
     }
 }
 
@@ -459,7 +464,7 @@ void Sintatico::relop() {
             this->eat(this->tok_code);
             break;
         default:
-            this->error();
+            this->error("relop");
     }
 }
 
@@ -471,7 +476,7 @@ void Sintatico::addop() {
             this->eat(this->tok_code);
             break;
         default:
-            this->error();
+            this->error("addop");
     }
 }
 
@@ -483,7 +488,7 @@ void Sintatico::mulop() {
             this->eat(this->tok_code);
             break;
         default:
-            this->error();
+            this->error("mulop");
     }
 }
 
@@ -494,42 +499,165 @@ void Sintatico::constant() {
             this->eat(this->tok_code);
             break;
         default:
-            this->error();
+            this->error("constant");
     }
 }
 
+#undef switch
+#undef eat
 
 
-void Sintatico::error() {
-    cout << "Syntax Error in line " << this->kesser->get_line() << "\n" << endl;
+
+void Sintatico::error(string s) {
+    cout << "Syntax Error in line " << this->kesser->get_line() << ":" <<
+    this->kesser->get_column() << " in non_terminal \"" << s << "\"" << endl;
+    
+
+#define COMPARE_ERROR(NAME)     if(s.compare(#NAME)==0) goto NAME
+#define ENDING                  goto exit_error;
+
+    COMPARE_ERROR(program);
+    COMPARE_ERROR(decl_list1);
+    COMPARE_ERROR(decl_list2);
+    COMPARE_ERROR(decl);
+    COMPARE_ERROR(ident_list1);
+    COMPARE_ERROR(ident_list2);
+    COMPARE_ERROR(type);
+    COMPARE_ERROR(stmt_list1);
+    COMPARE_ERROR(stmt_list2);
+    COMPARE_ERROR(stmt);
+    COMPARE_ERROR(assign_stmt);
+    COMPARE_ERROR(if_stmt1);
+    COMPARE_ERROR(if_stmt2);
+    COMPARE_ERROR(condition);
+    COMPARE_ERROR(do_stmt);
+    COMPARE_ERROR(stmt_suffix);
+    COMPARE_ERROR(read_stmt);
+    COMPARE_ERROR(write_stmt);
+    COMPARE_ERROR(writable);
+    COMPARE_ERROR(expression1);
+    COMPARE_ERROR(expression2);
+    COMPARE_ERROR(simple_expr1);
+    COMPARE_ERROR(simple_expr2);
+    COMPARE_ERROR(term1);
+    COMPARE_ERROR(term2);
+    COMPARE_ERROR(factor_a);
+    COMPARE_ERROR(factor);
+    COMPARE_ERROR(relop);
+    COMPARE_ERROR(addop);
+    COMPARE_ERROR(mulop);
+    COMPARE_ERROR(constant);
+
+
+    
+    
+program:
+    cout << "Program structure must be: \n [\"var\" decl_list] \"begin\" stmt_list \"end\"" << endl;
+    ENDING
+    
+decl_list1:
+decl_list2:
+    cout << "decl_list structure must be: \n decl \";\" {decl \";\"}" << endl;
+    ENDING
+    
+decl:
+    cout << "decl structure must be: \n ident-list \"is\" type" << endl;
+    ENDING
+    
+ident_list1:
+ident_list2:
+    cout << "ident_list structure must be: \n identifier {\",\" ident_list}" << endl;
+    ENDING
+    
+type:
+    cout << "type must be either \"int\" or \"string\"" << endl;
+    ENDING
+    
+stmt_list1:
+stmt_list2:
+    cout << "stmt_list structure must be: \n stmt \";\" [stmt_list]" << endl;
+    ENDING
+    
+stmt:
+    cout << "stmt must be either assign_stmt, if_stmt, do_stmt, read_stmt or write_stmt" << endl;
+    ENDING
+    
+assign_stmt:
+    cout << "assign_stmt structure must be: \n identifier \":=\" simple_expr" << endl;
+    ENDING
+    
+if_stmt1:
+if_stmt2:
+    cout << "if_stmt structure must be: \n \"if\" condition \"then\" stmt_list {\"else\" stmt_list} \"end\"" << endl;
+    ENDING
+    
+condition:
+    cout << "condition must be an expression" << endl;
+    ENDING
+    
+do_stmt:
+    cout << "do_stmt structure must be: \n \"do\" stmt-list stmt_suffix" << endl;
+    ENDING
+    
+stmt_suffix:
+    cout << "stmt_suffix structure must be: \n \"while\ condition" << endl;
+    ENDING
+    
+read_stmt:
+    cout << "read_stmt structure must be: \n \"in\" \"(\" identifier \")\"" << endl;
+    ENDING
+    
+write_stmt:
+    cout << "stmt_suffix structure must be: \n \"out\" \"(\" writable \")\"" << endl;
+    ENDING
+    
+writable:
+    cout << "writable must be a simple_exp" << endl;
+    ENDING
+    
+expression1:
+expression2:
+    cout << "expression structure must be: \n simple_expr [relop simple_expr]" << endl;
+    ENDING
+    
+simple_expr1:
+simple_expr2:
+    cout << "simple_expr structure must be: \n [simple_expr addop] term" << endl;
+    ENDING
+    
+term1:
+term2:
+    cout << "term structure must be: \n [term mulop] factor_a" << endl;
+    ENDING
+    
+factor_a:
+    cout << "factor_a structure must be: \n [\"not\"|\"-\"] factor" << endl;
+    ENDING
+    
+factor:
+    cout << "factor must be either identifier, constant or \"(\" expression \")\"" << endl;
+    ENDING
+    
+relop:
+    cout << "relop must be either \"=\", \">\", \">=\", \"<\", \"<=\" or \"<>\"" << endl;
+    ENDING
+    
+addop:
+    cout << "addop must be either \"+\", \"-\" or \"or\"" << endl;
+    ENDING
+    
+mulop:
+    cout << "mulop must be either \"*\", \"/\" or \"and\"" << endl;
+    ENDING
+    
+constant:
+    cout << "constant must be either an integer_const or a literal" << endl;
+    ENDING
+    
+    
+#undef COMPARE_ERROR
+#undef ENDING
+    
+exit_error:
     exit(10);
 }
-
-
-/*
-void Sintatico::program(){
-	eat('[');
-	decl_list();
-	eat(']');
-	eat("begin");
-	stmt_list();
-	eat("end");
-}
-
-void Sintatico::decl_list(){
-	decl();
-	eat(';');
-	eat('{');
-	decl();
-	eat(';');
-	eat('}');
-}
-
-void Sintatico::ident_list(){
-	identifier();
-	eat('{');
-	eat(',');
-	identifier();
-	eat('}');
-}
-*/

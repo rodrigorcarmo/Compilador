@@ -1,0 +1,18 @@
+var
+        j, k is int;
+        a, j is int;
+   begin
+     in(j);
+in(K);
+     if k <> 0 then
+        result := j/k;
+     else
+        result := 0;
+     end;
+out({Altura: });
+in (altura);
+soma := soma + altura;
+_cont := _cont - 1;
+end;
+     out(result);
+  end

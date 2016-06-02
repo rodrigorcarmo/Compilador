@@ -4,30 +4,30 @@
  Class constructor. Insert all reserved words into the symbols table.
  */
 Lexico::Lexico(string filename) {
-    this->line = 1;
-    this->column = 0;
+    this->line_mem2 = this->line_mem1 = this->line = 1;
+    this->column_mem1 = this->column_mem1 = this->column = 0;
     this->file.open(filename.c_str());
     if(!this->file.is_open()){
         cout<<"File \"" << filename << "\"does not exist!" <<endl;
         return;
     }
-    insertReserved(Word::Var);
-    insertReserved(Word::Begin);
-    insertReserved(Word::End);
-    insertReserved(Word::If);
-    insertReserved(Word::Else);
-    insertReserved(Word::Then);
-    insertReserved(Word::End);
-    insertReserved(Word::Int);
-    insertReserved(Word::String);
-    insertReserved(Word::Do);
-    insertReserved(Word::While);
-    insertReserved(Word::Is);
-    insertReserved(Word::In);
-    insertReserved(Word::Out);
-    insertReserved(Word::Not);
-    insertReserved(Word::AndOp);
-    insertReserved(Word::OrOp);
+    this->insertReserved(Word::Var);
+    this->insertReserved(Word::Begin);
+    this->insertReserved(Word::End);
+    this->insertReserved(Word::If);
+    this->insertReserved(Word::Else);
+    this->insertReserved(Word::Then);
+    this->insertReserved(Word::End);
+    this->insertReserved(Word::Int);
+    this->insertReserved(Word::String);
+    this->insertReserved(Word::Do);
+    this->insertReserved(Word::While);
+    this->insertReserved(Word::Is);
+    this->insertReserved(Word::In);
+    this->insertReserved(Word::Out);
+    this->insertReserved(Word::Not);
+    this->insertReserved(Word::AndOp);
+    this->insertReserved(Word::OrOp);
     this->next_char();
 }
 
@@ -77,6 +77,11 @@ void Lexico::insertReserved(Word *w) {
  */
 Token* Lexico::next_token() {
     Token* t;
+    // Record line and column of previous 2 tokens
+    this->line_mem2   = this->line_mem1;
+    this->line_mem1   = this->line;
+    this->column_mem2 = this->column_mem1;
+    this->column_mem1 = this->column;
 beginning:
     // Scape delimiters and EOF
     while(this->is_delimiter(this->ch))
@@ -302,7 +307,11 @@ Token* Lexico::insert_word(string s) {
 }
 
 int Lexico::get_line() {
-    return this->line;
+    return this->line_mem1;
+}
+
+int Lexico::get_column() {
+    return this->column_mem1;
 }
 
 

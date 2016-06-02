@@ -1,0 +1,19 @@
+% Exemplo de comentario
+bla bla bla %
+
+var //variaveis
+	i, j, k, target is int;
+begin
+	in(target);
+	i:=j;j:=k;k:=1;
+	cont:=2;
+	if target>=3 then
+		do
+			i:=j;
+			j:=k;
+			k:=i+j;
+			cont:=cont+1;
+		while cont<target;
+	end;
+	out(k);
+end

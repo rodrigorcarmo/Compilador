@@ -1,9 +1,11 @@
 #include<iostream>
 #include<cmath>
+#include<cstring>
 #include "Lexico.h"
 #include "Tag.h"
-#include "Token.h";
-#include "Lexico.h";
+#include "Token.h"
+#include "Lexico.h"
+
 #ifndef COMPILADOR_SINTATICO_H
 #define COMPILADOR_SINTATICO_H
 
@@ -50,7 +52,8 @@ private:
     void addop();
     void mulop();
     void constant();
-    void error();
+    void error(string s);
+    string *non_terminal;
     /*
     void integer_cont();
     void literal();
