@@ -600,7 +600,7 @@ do_stmt:
     ENDING
     
 stmt_suffix:
-    cout << "stmt_suffix structure must be: \n \"while\ condition" << endl;
+    cout << "stmt_suffix structure must be: \n \"while\" condition" << endl;
     ENDING
     
 read_stmt:
