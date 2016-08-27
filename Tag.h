@@ -47,6 +47,10 @@
 #define AND_OP 35
 #define ASSIGN_OP 36
 
+// Void and Error types
+#define VOID 37
+#define ERROR 38
+#define BOOL 39
 
 
 #endif //COMPILADOR_TAG_H

@@ -13,6 +13,7 @@ public:
     Word(string s, int tag);
     string to_string();
     int get_Tag();
+    int tipo;
     static Word* Var;
     static Word* Begin;
     static Word* End;
@@ -44,6 +45,7 @@ public:
     static Word* DivOp;
     static Word* AndOp;
     static Word* AssignOp;
+    
 };
 
 #endif /* WORD_H */

@@ -1,10 +1,13 @@
 #include<iostream>
 #include<cmath>
 #include<cstring>
+#include<stack>
 #include "Lexico.h"
 #include "Tag.h"
 #include "Token.h"
+#include "Word.h"
 #include "Lexico.h"
+#include "NonTerminal.h"
 
 #ifndef COMPILADOR_SINTATICO_H
 #define COMPILADOR_SINTATICO_H
@@ -15,7 +18,17 @@ class Sintatico{
 public:
     Sintatico(Lexico* analisador);
     void run();
+    void insert_type_ST(string identifier, int tipo) {
+        Word *w;
+        if (kesser->hashtable.find(identifier) != kesser->hashtable.end()) {
+            w = kesser->hashtable[identifier];
+            w->tipo = tipo;
+        }
+    }
+    
 private:
+    stack<NonTerminal*> nonterminal_stack;
+    stack<string> words;
     Lexico* kesser;
     Token* tok;
     int tok_code;
